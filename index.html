@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label>
+      Remove duplicate value from array with and without built function.
+    </label>
+    <div id="org_value"></div>
+    <br />
+    <div id="r_value_built"></div>
+    <br />
+    <div id="r_value_custom"></div>
+    <br />
+    <button onclick="submit();">Try</button>
+  </body>
+</html>
+
+<script>
+  /**
+   * Requirement:- store array values in a variable with duplicates some value.
+   *
+   * Pseudo code for get unique values array with builtin function:-
+   * 1. get all value in a variable.
+   * 2. create a empty array variable.
+   * 3. check all values using map function and check one by one.
+   * 4. check value in exist or not in new array using indexof function, if value already exist in this array so function return index otherwise -1.
+   * 5. if getting -1 response from function then push checked value in new array.
+   *
+   * * Pseudo code for get unique values array without builtin function:-
+   * 1. get original array in a variable and create a empty array variable for sotre purpose.
+   * 2. run for loop.
+   * 3. set a flag status in a variable with true boolean value.
+   * 4. check new array, if any value is exist already so check all stored value one by one with original array value one by one.
+   * 5. if value is matched then flag set false then after for loop completion check flag and if flag is true then insert a picked value
+   * in max length of new array.
+   * 6. if new array length is 0 then store picked value in max length of new array.
+   */
+
+  var org_value = [1, 2, 2, 2, 2, 5, 3, 5, 7, 3, 6, 7];
+  document.getElementById("org_value").innerHTML = org_value;
+  function submit() {
+    // built in function
+    let r_arr = [];
+    org_value.map((element) => {
+      if (r_arr.indexOf(element) < 1) {
+        r_arr.push(element);
+      }
+    });
+    document.getElementById("r_value_built").innerHTML = r_arr;
+    // end builtin function for unique value
+
+    // custom or wothout builtin function
+    let r_no_arr = [];
+
+    for (var i = 0; i < org_value.length; i++) {
+      let flag = true;
+      if (r_no_arr.length > 0) {
+        for (var j = 0; j < r_no_arr.length; j++) {
+          if (r_no_arr[j] == org_value[i]) {
+            flag = false;
+          }
+        }
+        if (flag) {
+          r_no_arr[r_no_arr.length] = org_value[i];
+        }
+      } else {
+        r_no_arr[r_no_arr.length] = org_value[i];
+      }
+    }
+    document.getElementById("r_value_custom").innerHTML = r_no_arr;
+
+    // end custom function for unique value from array
+  }
+</script>
