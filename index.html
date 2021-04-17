@@ -22,7 +22,7 @@
 
 <script>
   /**
-   * Requirement:- store array values in a variable with duplicates some value.
+   * Requirement:- need get unique values from mix values array.
    *
    * Pseudo code for get unique values array with builtin function:-
    * 1. get all value in a variable.
@@ -41,13 +41,22 @@
    * 6. if new array length is 0 then store picked value in max length of new array.
    */
 
+  // ref. https://levelup.gitconnected.com/7-ways-to-remove-duplicates-from-array-in-javascript-cea4144caf31
+
   var org_value = [1, 2, 2, 2, 2, 5, 3, 5, 7, 3, 6, 7];
   document.getElementById("org_value").innerHTML = org_value;
   function submit() {
     // built in function
     let r_arr = [];
+
+    // var unique = org_value.filter((v, i, a) => a.indexOf(v) === i);
+
+    // we can use includes() for check value exist in new array or not
+
+    // console.log(...new Set(org_value))
+
     org_value.map((element) => {
-      if (r_arr.indexOf(element) < 1) {
+      if (r_arr.indexOf(element) === -1) {
         r_arr.push(element);
       }
     });
@@ -76,4 +85,19 @@
 
     // end custom function for unique value from array
   }
+
+  // check how many values are duplicate
+
+  var obj = {};
+  var a = 1;
+  var b = 2;
+  for (var i = 0; i < org_value.length; i++) {
+    if (obj.hasOwnProperty(org_value[i])) {
+      obj[org_value[i]] = obj[org_value[i]] + 1;
+      continue;
+    }
+    obj[org_value[i]] = 1;
+  }
+
+  console.log(obj);
 </script>
